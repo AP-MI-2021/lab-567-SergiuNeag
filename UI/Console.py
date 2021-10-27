@@ -1,4 +1,4 @@
-from Domain.inventar import to_string
+from Domain.inventar2 import to_string
 from Logic.CRUD import adauga_inventar, sterge_inventar, modificare_inventar
 
 
@@ -11,12 +11,16 @@ def print_menu():
 
 
 def ui_adaugare_inventar(lista):
-    id = input("Dati id-ul: ")
-    nume = input("Dati numele: ")
-    descriere = input("Dati descriere: ")
-    pret = float(input("Dati pret: "))
-    locatie = input("Dati locatia: ")
-    return adauga_inventar(id, nume, descriere, pret, locatie, lista)
+    try:
+        id = input("Dati id-ul: ")
+        nume = input("Dati numele: ")
+        descriere = input("Dati descriere: ")
+        pret = float(input("Dati pret: "))
+        locatie = input("Dati locatia: ")
+        return adauga_inventar(id, nume, descriere, pret, locatie, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
 def ui_stergere_inventar(lista):

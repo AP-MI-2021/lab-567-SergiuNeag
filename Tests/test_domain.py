@@ -1,4 +1,4 @@
-from Domain.inventar import creeaza_inventar, get_id, get_nume, get_descriere, get_pret, get_locatie
+from Domain.inventar2 import creeaza_inventar, get_id, get_nume, get_descriere, get_pret, get_locatie
 
 
 def test_inventar():

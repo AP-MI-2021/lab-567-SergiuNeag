@@ -1,4 +1,4 @@
-from Domain.inventar import creeaza_inventar, get_id
+from Domain.inventar2 import creeaza_inventar, get_id
 
 
 def adauga_inventar(id, nume, descriere, pret, locatie, lista):
