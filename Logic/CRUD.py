@@ -1,4 +1,4 @@
-from Domain.inventar import creeaza_inventar, get_id
+from Domain.inventar import creeaza_inventar, get_id, get_pret
 
 
 def adauga_inventar(id, nume, descriere, pret, locatie, lista):
@@ -15,6 +15,8 @@ def adauga_inventar(id, nume, descriere, pret, locatie, lista):
     if get_by_id(id, lista) is not None:
         raise ValueError("Id-ul exista deja")
     inventar = creeaza_inventar(id, nume, descriere, pret, locatie)
+    if float(get_pret(inventar)) < 0:
+        raise ValueError("pretul este negativ! Incorect")
     return lista + [inventar]
 
 

@@ -15,19 +15,19 @@ def ui_2(lst_inventar):
     print(' ')
     help()
     print(' ')
-    comenzi = input('Scrie lista de comenzi separate prin ,  si ; pt finalul seriei de comenzi: ; stop  :  ')
-    lst_comenzi = comenzi.split(';')
-    done = False
-    while not done:
-        for comanda in lst_comenzi:
-            comanda_split = comanda.split(',')
+    while True:
+        comenzi = input('Scrie lista de comenzi separate prin ,  si ; pt finalul seriei de comenzi: ; stop  :  ')
+        if comenzi == 'stop':
+            break
+        else:
+            lst_comenzi = comenzi.split(';')
+            for comanda in lst_comenzi:
+                comanda_split = comanda.split(',')
 
-            if comanda_split[0] == 'showall':
-                show_all(lst_inventar)
-            elif comanda_split[0] == 'add':
-                lst_inventar = adauga_inventar(int(comanda_split[1]), comanda_split[2],
-                                              comanda_split[3], float(comanda_split[4]), comanda_split[5], lst_inventar)
-            elif comanda_split[0] == 'delete':
-                lst_inventar = sterge_inventar(int(comanda_split[1]), lst_inventar)
-            elif comanda_split[0] == 'stop':
-                done = True
+                if comanda_split[0] == 'showall':
+                    show_all(lst_inventar)
+                elif comanda_split[0] == 'add':
+                    lst_inventar = adauga_inventar(int(comanda_split[1]), comanda_split[2],
+                                                  comanda_split[3], float(comanda_split[4]), comanda_split[5], lst_inventar)
+                elif comanda_split[0] == 'delete':
+                    lst_inventar = sterge_inventar(int(comanda_split[1]), lst_inventar)
