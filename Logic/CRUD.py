@@ -1,4 +1,4 @@
-from Domain.inventar2 import creeaza_inventar, get_id
+from Domain.inventar import creeaza_inventar, get_id
 
 
 def adauga_inventar(id, nume, descriere, pret, locatie, lista):
@@ -12,6 +12,8 @@ def adauga_inventar(id, nume, descriere, pret, locatie, lista):
     :param lista:lista de inventare
     :return: o lista continand elementele vechi si noul inventar
     """
+    if get_by_id(id, lista) is not None:
+        raise ValueError("Id-ul exista deja")
     inventar = creeaza_inventar(id, nume, descriere, pret, locatie)
     return lista + [inventar]
 
@@ -31,10 +33,12 @@ def get_by_id(id, lista):
 def sterge_inventar(id, lista):
     """
     sterge un inventar dintr-o lista
-    :param id:
-    :param lista:
-    :return:
+    :param id:Id-ul inventarului
+    :param lista: lista de inventare
+    :return:lista dupa ce au fost sterse inventarle in functie de id
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Obiectul cu id-ul dat nu exista")
     return [inventar for inventar in lista if get_id(inventar) != id]
 
 
@@ -49,6 +53,8 @@ def modificare_inventar(id, nume, descriere, pret, locatie, lista):
     :param lista: noua lista
     :return:
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Obiectul cu id-ul dat nu exista")
     lista_noua = []
     for inventar in lista:
         if get_id(inventar) == id:
