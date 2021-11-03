@@ -15,7 +15,8 @@ def adauga_inventar(id, nume, descriere, pret, locatie, lista):
     if get_by_id(id, lista) is not None:
         raise ValueError("Id-ul exista deja")
     inventar = creeaza_inventar(id, nume, descriere, pret, locatie)
-    if float(get_pret(inventar)) < 0:
+    if float(get_pret(inventar))\
+            < 0:
         raise ValueError("pretul este negativ! Incorect")
     return lista + [inventar]
 
@@ -55,6 +56,8 @@ def modificare_inventar(id, nume, descriere, pret, locatie, lista):
     :param lista: noua lista
     :return:
     """
+    if pret < 0:
+        raise ValueError("Pretul trebuie sa fie pozitiv!")
     if get_by_id(id, lista) is None:
         raise ValueError("Obiectul cu id-ul dat nu exista")
     lista_noua = []
