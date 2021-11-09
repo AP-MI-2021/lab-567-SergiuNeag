@@ -25,17 +25,22 @@ def get_id(inventar):
     """
     return inventar["id"]
 
+
 def get_nume(inventar):
     return inventar["nume"]
+
 
 def get_descriere(inventar):
     return inventar["descriere"]
 
+
 def get_pret(inventar):
     return inventar["pret"]
 
+
 def get_locatie(inventar):
     return inventar["locatie"]
+
 
 def to_string(inventar):
     return "Id: {}, Nume: {}, Descriere: {}, Pret: {}, Locatie: {}".format(

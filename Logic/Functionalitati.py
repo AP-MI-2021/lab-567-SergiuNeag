@@ -14,7 +14,9 @@ def muta_din_inventar(locatie, locatie_noua, lista):
     lista_noua = []
     for inventar in lista:
         if get_locatie(inventar) == locatie:
-            inventar_nou = creeaza_inventar(get_id(inventar), get_nume(inventar), get_descriere(inventar), get_pret(inventar), locatie_noua)
+            inventar_nou = creeaza_inventar(get_id(inventar),
+                                            get_nume(inventar), get_descriere(inventar),
+                                            get_pret(inventar), locatie_noua)
             lista_noua.append(inventar_nou)
         else:
             lista_noua.append(inventar)
@@ -39,3 +41,47 @@ def concateneaza_string_pret_mai_mare(cuvant, val, lista):
         else:
             lista_noua.append(inventar)
     return lista_noua
+
+
+def cel_mai_mare_pret_locatie(lista):
+    """
+    Determina cel mai mare pret din fiecare locatie
+    :param lista: Lista de inventare
+    :return: Dictionarul 'rez' cu elementele formate din cheia locatie si valoarea pret
+    """
+    rez = {}
+    for inventar in lista:
+        locatie = get_locatie(inventar)
+        pret = get_pret(inventar)
+        if locatie in rez:
+            if pret > rez[locatie]:
+                rez[locatie] = pret
+        else:
+            rez[locatie] = pret
+    return rez
+
+
+def ordonare_crescator_dupa_pret(lista):
+    """
+    Determina lista ordonata crescator dupa pretul de achizitie a unui inventar
+    :param lista: Lista de inventare
+    :return: Lista ordonata crescator dupa pretul de achizitie
+    """
+    return sorted(lista, key=lambda inventar: get_pret(inventar))
+
+
+def suma_pret_locatie(lista):
+    """
+    Determina suma preturilor inventarelor din lista
+    :param lista: Lista de inventare
+    :return: Dictionarul cu cheia locatie si valoarea pret
+    """
+    rezultat = {}
+    for inventar in lista:
+        pret = get_pret(inventar)
+        locatie = get_locatie(inventar)
+        if locatie in rezultat:
+            rezultat[locatie] = rezultat[locatie] + pret
+        else:
+            rezultat[locatie] = pret
+    return rezultat

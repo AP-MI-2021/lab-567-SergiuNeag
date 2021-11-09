@@ -33,6 +33,7 @@ def get_by_id(id, lista):
             return inventar
     return None
 
+
 def sterge_inventar(id, lista):
     """
     sterge un inventar dintr-o lista

@@ -10,6 +10,7 @@ def creeaza_inventar(id, nume, descriere, pret, locatie):
     """
     return [id, nume, descriere, pret, locatie]
 
+
 def get_id(inventar):
     """
     Da id-ul unui inventar
@@ -18,17 +19,22 @@ def get_id(inventar):
     """
     return inventar[0]
 
+
 def get_nume(inventar):
     return inventar[1]
+
 
 def get_descriere(inventar):
     return inventar[2]
 
+
 def get_pret(inventar):
     return inventar[3]
 
+
 def get_locatie(inventar):
     return inventar[4]
+
 
 def to_string(inventar):
     return "Id: {}, Nume: {}, Descriere: {}, Pret: {}, Locatie: {}".format(

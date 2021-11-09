@@ -28,6 +28,7 @@ def ui_2(lst_inventar):
                     show_all(lst_inventar)
                 elif comanda_split[0] == 'add':
                     lst_inventar = adauga_inventar(int(comanda_split[1]), comanda_split[2],
-                                                  comanda_split[3], float(comanda_split[4]), comanda_split[5], lst_inventar)
+                                                   comanda_split[3], float(comanda_split[4]),
+                                                   comanda_split[5], lst_inventar)
                 elif comanda_split[0] == 'delete':
                     lst_inventar = sterge_inventar(int(comanda_split[1]), lst_inventar)
