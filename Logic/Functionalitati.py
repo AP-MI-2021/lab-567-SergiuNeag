@@ -23,7 +23,7 @@ def muta_din_inventar(locatie, locatie_noua, lista):
     return lista_noua
 
 
-def concateneaza_string_pret_mai_mare(cuvant, val, lista):
+def concateneaza_string_pret_mai_mare(cuvant: str, val: float, lista):
     """
     Concateneaza un string(retinut in variabila cuvant) obiectelor (inventarelor)
     care au un pret mai mare decat floatul retinut in variabila val

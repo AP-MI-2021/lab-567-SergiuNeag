@@ -63,20 +63,33 @@ def ui_modificare_inventar(lista, undo_list, redo_list):
         return lista
 
 
-def ui_muta_din_inventar(lista):
+def ui_muta_din_inventar(lista, undo_list, redo_list):
     try:
         locatie = input("Din ce locatie doresti sa muti?: ")
         locatie_noua = input("Locatia in care doresti sa muti: ")
-        return muta_din_inventar(locatie, locatie_noua, lista)
+        rezultat = muta_din_inventar(locatie, locatie_noua, lista)
+        undo_list.append(lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_concateneaza_string_pret_mai_mare(lista):
-    cuvant = input("Stringul care va fi concatenat: ")
-    val = float(input("Descrierea va fi concatenata pentru pretul mai mare de: "))
-    return concateneaza_string_pret_mai_mare(cuvant, val, lista)
+def ui_concateneaza_string_pret_mai_mare(lista, undo_list, redo_list):
+    try:
+        cuvant = input("Stringul care va fi concatenat: ")
+        val = float(input("Descrierea va fi concatenata pentru pretul mai mare de: "))
+        rezultat = concateneaza_string_pret_mai_mare(cuvant, val, lista)
+        undo_list.append(lista)
+        redo_list.clear()
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
+    except Exception as es:
+        print("Eroare: {}".format(es))
+        return lista
 
 
 def ui_afiseaza_cel_mai_mare_locatie(lista):
@@ -113,9 +126,9 @@ def run_menu(lista):
         elif optiune == "3":
             lista = ui_modificare_inventar(lista, undo_list, redo_list)
         elif optiune == "4":
-            lista = ui_muta_din_inventar(lista)
+            lista = ui_muta_din_inventar(lista, undo_list, redo_list)
         elif optiune == "5":
-            lista = ui_concateneaza_string_pret_mai_mare(lista)
+            lista = ui_concateneaza_string_pret_mai_mare(lista, undo_list, redo_list)
         elif optiune == "6":
             ui_afiseaza_cel_mai_mare_locatie(lista)
         elif optiune == "7":
@@ -132,7 +145,7 @@ def run_menu(lista):
                 print("Nu se poate face Undo, lista este goala! ")
         elif optiune == "r":
             if len(redo_list) > 0:
-                redo_list.append(lista)
+                undo_list.append(lista)
                 lista = redo_list.pop()
             else:
                 print("Nu se poate face Redo! ")
